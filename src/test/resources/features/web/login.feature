@@ -6,39 +6,62 @@ Feature: Login
   Scenario: User login with valid credentials
     Given user is on home page
     When user click login menu
-    And user input login username "validusername"
-    And user input login password "validpassword"
+    And user input login username "Jivando"
+    And user input login password "vando123"
     And user click login button
-    Then user should see successfully login alert
+    Then user should see logout menu
 
   @negative
   Scenario: User login with wrong password
     Given user is on home page
     When user click login menu
-    And user input login username "asdf"
+    And user input login username "Jivando"
     And user input login password "a"
     And user click login button
-    Then user should see wrong password alert
+    Then user should see login alert with "Wrong password."
+
+  @negative
+  Scenario: User login with wrong username and password
+    Given user is on home page
+    When user click login menu
+    And user input login username "Jivando15235"
+    And user input login password "a"
+    And user click login button
+    Then user should see login alert with "User does not exist."
 
   @negative
   Scenario: User login with wrong username
     Given user is on home page
     When user click login menu
-    And user input login username "asdawegawegf"
-    And user input login password "asdfa"
+    And user input login username "Jivando15235"
+    And user input login password "vando123"
     And user click login button
-    Then user should see user does not exist alert
+    Then user should see login alert with "User does not exist."
 
   @negative
-  Scenario: User login with missing username or password
+  Scenario: User login with missing username and password
     Given user is on home page
     When user click login menu
-    And user input login username "asdawegawegf"
-    And user input login password ""
     And user click login button
-    Then user should see empty username or password alert
+    Then user should see login alert with "Please fill out Username and Password."
 
-  @positive
+  @negative
+  Scenario: User login with missing username
+    Given user is on home page
+    When user click login menu
+    And user input login password "vando123"
+    And user click login button
+    Then user should see login alert with "Please fill out Username and Password."
+
+  @negative
+  Scenario: User login with missing password
+    Given user is on home page
+    When user click login menu
+    And user input login username "Jivando15235"
+    And user click login button
+    Then user should see login alert with "Please fill out Username and Password."
+
+  @cancel
   Scenario: User cancels login
     Given user is on home page
     When user click login menu

@@ -14,3 +14,9 @@ Feature: Get user by id
     When user send GET HTTP request without app-id
     Then user receive valid status code 403
 
+  @negative
+  Scenario: Get user data with invalid id
+    Given user set GET user API endpoint with user id "wrongid"
+    When user send GET HTTP request
+    Then user receive valid status code 400
+

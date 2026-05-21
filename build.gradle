@@ -21,8 +21,7 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.43.0'
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.4'
 
-    // API TestNG
-    testImplementation 'org.testng:testng:7.12.0'
+    // API
     testImplementation 'io.rest-assured:rest-assured:6.0.0'
     implementation 'org.json:json:20251224'
 }
@@ -73,7 +72,7 @@ tasks.register('webTest', JavaExec) {
             '--plugin', 'pretty',
             '--plugin', 'html:reports/web-report.html',
             '--plugin', 'json:reports/web-report.json',
-            '--glue', 'webtesting.stepdef',
+            '--glue', 'webtesting',
             '--tags', "${tags}",
             'src/test/resources/features/web'
     ]

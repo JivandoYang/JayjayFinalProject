@@ -96,6 +96,14 @@ public class UserEndpoint extends ApiBaseTest {
                 .delete("/user/" + userId);
     }
 
+    public void sendWrongDeleteUserRequest(String userId) {
+        response = RestAssured
+                .given()
+                .header("app-id", appId)
+                .when()
+                .delete("/user/" + userId);
+    }
+
     public void validateStatusCode(int statusCode) {
         response.then().statusCode(statusCode);
     }

@@ -7,3 +7,8 @@ Feature: Delete user
     Given user create new user
     When user send DELETE HTTP request
     Then user receive valid status code 200
+
+  @positive
+  Scenario: delete user data with invalid id
+    When user send DELETE HTTP request with "wrongid"
+    Then user receive valid status code 400

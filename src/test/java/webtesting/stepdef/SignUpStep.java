@@ -2,48 +2,50 @@ package webtesting.stepdef;
 
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import webtesting.pages.SignUp;
 
 public class SignUpStep {
-    @Given("user is in home page")
-    public void userIsInHomePage() {
-    }
 
-    @When("user click sign up menu")
-    public void userClickSignUpMenu() {
-    }
+    SignUp signUp = new SignUp();
 
     @And("user input signup username {string}")
     public void userInputSignupUsername(String username) {
+        signUp.inputUsername(username);
     }
 
     @And("user input signup password {string}")
     public void userInputSignupPassword(String password) {
+        signUp.inputPassword(password);
     }
 
     @And("user click sign up button")
     public void userClickSignUpButton() {
+        signUp.clickSignButton();
     }
 
-    @Given("user is on home page")
-    public void userIsOnHomePage() {
-    }
-
-    @Then("user should see successfully sign up alert")
-    public void userShouldSeeSuccessfullySignUpAlert() {
-    }
-
-    @Then("user should see username already exists alert")
-    public void userShouldSeeUsernameAlreadyExistsAlert() {
+    @Then("user should see sign up alert with {string}")
+    public void userShouldSeeSignUpAlertWith(String expectedMessage) {
+        signUp.validateAlert(expectedMessage);
     }
 
     @And("user click cancel signup button")
     public void userClickCancelButton() {
+        signUp.closeButton();
     }
 
     @Then("sign up modal should be closed")
     public void signUpModalShouldBeClosed() {
+        signUp.validateModalClosed();
+    }
+
+    @And("user input signup random username")
+    public void userInputSignupRandomUsername() {
+        String random = java.util.UUID.randomUUID()
+                .toString()
+                .substring(0, 4);
+
+        signUp.inputUsername(random);
     }
 }

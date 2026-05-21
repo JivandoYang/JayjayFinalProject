@@ -20,3 +20,11 @@ Feature: Update user
     Then user receive valid status code 200
     And user email should not be updated
 
+  @negative
+  Scenario: Update user data with invalid id
+    Given user set PUT update user API endpoint with user id "wrongid"
+    And user input first name "John"
+    And user input last name "Doe"
+    When user send PUT HTTP update request
+    Then user receive valid status code 400
+

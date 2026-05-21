@@ -4,23 +4,39 @@ Feature: Sign up
 
   @positive
   Scenario: user sign up with valid data
-    Given user is in home page
-    When  user click sign up menu
-    And user input signup username ""
-    And user input signup password ""
+    Given user is on home page
+    When user click sign up menu
+    And user input signup random username
+    And user input signup password "random"
     And user click sign up button
-    Then user should see successfully sign up alert
+    Then user should see sign up alert with "Sign up successful."
 
   @negative
   Scenario: User sign up with existing username
     Given user is on home page
     When user click sign up menu
-    And user input signup username ""
-    And user input signup password ""
+    And user input signup username "Jivando"
+    And user input signup password "vando123"
     And user click sign up button
-    Then user should see username already exists alert
+    Then user should see sign up alert with "This user already exist."
 
-  @positive
+  @negative
+  Scenario: User sign up without username
+    Given user is on home page
+    When user click sign up menu
+    And user input signup password "Jivando"
+    And user click sign up button
+    Then user should see sign up alert with "Please fill out Username and Password."
+
+  @negative
+  Scenario: User sign up without password
+    Given user is on home page
+    When user click sign up menu
+    And user input signup username "vando123"
+    And user click sign up button
+    Then user should see sign up alert with "Please fill out Username and Password."
+
+  @cancel
   Scenario: User cancels sign up
     Given user is on home page
     When user click sign up menu

@@ -16,4 +16,9 @@ public class DeleteUserStep {
     public void userSendDELETEHTTPRequest() {
         userEndpoint.sendDeleteUserRequest();
     }
+
+    @When("user send DELETE HTTP request with {string}")
+    public void userSendDELETEHTTPRequestWith(String userId) {
+        userEndpoint.sendWrongDeleteUserRequest(userId);
+    }
 }
