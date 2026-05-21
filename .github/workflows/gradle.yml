@@ -28,9 +28,9 @@ jobs:
     - name: Run API Test
       run: ./gradlew apiTest
       
-    # # Menajalankan command cucumber untuk menjalankan testing
-    # - name: Run Selenium Web Test
-    #   run: ./gradlew webTest
+    # Menjalankan command cucumber untuk menjalankan testing
+    - name: Run Selenium Web Test
+      run: ./gradlew webTest
     
     # Buat hasil testing dalam bentuk laporan dalam folder reports
     - name: Upload Test Reports
