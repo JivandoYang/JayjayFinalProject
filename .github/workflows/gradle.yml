@@ -3,8 +3,8 @@ on:
   #Untuk menjalankan world secara manual
   workflow_dispatch:
   #jalankan saat pull
-  # pull_request:
-  #   branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
     
 jobs:
   test:
